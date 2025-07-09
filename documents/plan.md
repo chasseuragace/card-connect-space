@@ -3,154 +3,323 @@
 ## Phase 1: Database Foundation & Authentication 🏗️
 **Timeline: Days 1-2**
 
-### Database Schema
-- Create Supabase tables for all core entities
-- Set up Row Level Security (RLS) policies
-- Create database triggers for automatic timestamps
-- Add sample data for testing
+### Milestone 1.1: Core Database Schema (4-6 hours)
+- [ ] Create `companies` table with theme settings
+- [ ] Create `user_profiles` table with calendar integration fields
+- [ ] Create `teams` and `team_memberships` tables
+- [ ] Set up primary keys, foreign keys, and constraints
+- [ ] Add created_at/updated_at triggers
+- [ ] **Validation:** All tables created with proper relationships
 
-### Authentication System
-- Implement Supabase Auth with email/password
-- Create user profiles table with automatic creation trigger
-- Set up authentication guards and redirects
-- Design login/signup flow
+### Milestone 1.2: Booking & Feedback Tables (2-3 hours)
+- [ ] Create `calendar_events` table for Google sync
+- [ ] Create `booking_requests` table with status enum
+- [ ] Create `anonymous_feedback` table with word count constraint
+- [ ] Add indexes for performance optimization
+- [ ] **Validation:** All tables support required data types
 
-**Deliverables:**
-- Complete database schema
-- Working authentication system
-- Profile creation workflow
+### Milestone 1.3: Row Level Security Setup (2-3 hours)
+- [ ] Enable RLS on all user-specific tables
+- [ ] Create policies for user profile access
+- [ ] Create policies for team data access
+- [ ] Create policies for anonymous feedback (write-only)
+- [ ] **Validation:** Security policies prevent unauthorized access
+
+### Milestone 1.4: Authentication Implementation (3-4 hours)
+- [ ] Set up Supabase Auth configuration
+- [ ] Create auth pages (`/auth`) with login/signup forms
+- [ ] Implement profile creation trigger on signup
+- [ ] Add authentication guards for protected routes
+- [ ] **Validation:** Users can register, login, and auto-create profiles
+
+### Milestone 1.5: Sample Data & Testing (1-2 hours)
+- [ ] Insert sample company data
+- [ ] Create test user profiles with teams
+- [ ] Add sample calendar events and bookings
+- [ ] Add test anonymous feedback
+- [ ] **Validation:** All relationships work with realistic data
+
+**Phase 1 Deliverables:**
+- ✅ Complete database schema with RLS
+- ✅ Working authentication system
+- ✅ Auto profile creation workflow
+- ✅ Sample data for development
 
 ---
 
 ## Phase 2: Core Profile Landing Page 📱
 **Timeline: Days 3-4**
 
-### Mobile-First Design System
-- Create beautiful design tokens in index.css
-- Set up premium color palette and typography
-- Design card-based layout components
-- Implement smooth animations and transitions
+### Milestone 2.1: Design System Foundation (3-4 hours)
+- [ ] Create premium color palette in index.css (brand colors, gradients)
+- [ ] Set up typography scale with professional fonts
+- [ ] Define spacing, shadows, and border radius tokens
+- [ ] Create animation and transition utilities
+- [ ] **Validation:** Design tokens working across components
 
-### Profile Display
-- Create dynamic profile page (`/profile/[userId]`)
-- Display user info (name, position, company)
-- Show professional avatar and company logo
-- Add company information footer
+### Milestone 2.2: Layout Components (2-3 hours)
+- [ ] Create `Card` component with multiple variants
+- [ ] Build `Avatar` component with fallbacks
+- [ ] Design `Badge` component for feedback counts
+- [ ] Create responsive `Container` layouts
+- [ ] **Validation:** Components render beautifully on all screen sizes
 
-**Deliverables:**
-- Beautiful mobile-optimized profile page
-- Responsive design system
-- Professional visual identity
+### Milestone 2.3: Profile Page Structure (3-4 hours)
+- [ ] Create `/profile/[userId]` dynamic route
+- [ ] Build profile header with avatar and basic info
+- [ ] Add company branding section
+- [ ] Implement mobile-first responsive layout
+- [ ] **Validation:** Profile page loads with dynamic user data
+
+### Milestone 2.4: Profile Content Sections (2-3 hours)
+- [ ] Design professional info display (name, position, company)
+- [ ] Add contact information section
+- [ ] Create company footer with logo and location
+- [ ] Implement smooth scrolling and animations
+- [ ] **Validation:** All profile sections display correctly
+
+### Milestone 2.5: Mobile Optimization & Polish (1-2 hours)
+- [ ] Test and optimize touch interactions
+- [ ] Add loading states and skeletons
+- [ ] Implement error boundaries for missing data
+- [ ] Fine-tune animations and micro-interactions
+- [ ] **Validation:** Smooth performance on mobile devices
+
+**Phase 2 Deliverables:**
+- ✅ Professional design system with premium feel
+- ✅ Mobile-optimized profile landing page
+- ✅ Responsive layout components
+- ✅ Smooth animations and interactions
 
 ---
 
 ## Phase 3: Calendar Integration & Location Display 📅
 **Timeline: Days 5-6**
 
-### Google Calendar API
-- Set up Google Calendar API integration
-- Create calendar sync edge function
-- Implement event filtering (public, confirmed only)
-- Design real-time location display
+### Milestone 3.1: Google Calendar API Setup (3-4 hours)
+- [ ] Set up Google Calendar API credentials
+- [ ] Create Supabase Edge Function for calendar sync
+- [ ] Implement OAuth flow for calendar access
+- [ ] Test API connection and permissions
+- [ ] **Validation:** Can read user's Google Calendar events
 
-### Location Visualization
-- Create today's schedule component
-- Show event locations with times
-- Add location markers/badges
-- Implement live updates
+### Milestone 3.2: Calendar Event Sync (4-5 hours)
+- [ ] Build calendar sync logic (public events only)
+- [ ] Filter confirmed attendance events
+- [ ] Store events in `calendar_events` table
+- [ ] Implement incremental sync for efficiency
+- [ ] **Validation:** Events sync correctly with filters applied
 
-**Deliverables:**
-- Working Google Calendar sync
-- Real-time location display
-- Today's schedule component
+### Milestone 3.3: Today's Schedule Component (2-3 hours)
+- [ ] Create `TodaysSchedule` component
+- [ ] Display events with location and time
+- [ ] Add location badges/markers
+- [ ] Implement responsive timeline layout
+- [ ] **Validation:** Schedule displays beautifully on mobile
+
+### Milestone 3.4: Real-time Location Display (2-3 hours)
+- [ ] Add live event status (current, upcoming, past)
+- [ ] Implement auto-refresh for schedule updates
+- [ ] Add location-based visual indicators
+- [ ] Create smooth transitions between states
+- [ ] **Validation:** Real-time updates work correctly
+
+### Milestone 3.5: Calendar Settings & Privacy (1-2 hours)
+- [ ] Create calendar settings interface
+- [ ] Allow users to toggle event visibility
+- [ ] Add bulk event privacy controls
+- [ ] Test privacy settings functionality
+- [ ] **Validation:** Users can control what's public
+
+**Phase 3 Deliverables:**
+- ✅ Google Calendar API integration
+- ✅ Real-time location/schedule display
+- ✅ Privacy controls for events
+- ✅ Beautiful mobile schedule component
 
 ---
 
 ## Phase 4: Booking System 🗓️
 **Timeline: Days 7-8**
 
-### Booking Interface
-- Create beautiful calendar picker
-- Design time slot selection
-- Build contact form (name, email, note)
-- Add booking confirmation flow
+### Milestone 4.1: Calendar Picker Interface (3-4 hours)
+- [ ] Create beautiful date picker component
+- [ ] Implement time slot selection
+- [ ] Show available vs busy times
+- [ ] Add duration selection (30min, 1hr, 2hr)
+- [ ] **Validation:** Intuitive booking calendar works
 
-### Booking Management
-- Create booking requests table
-- Implement pending/confirmed status system
-- Design booking review interface for owners
-- Add email notifications
+### Milestone 4.2: Booking Request Form (2-3 hours)
+- [ ] Design contact form (name, email, note)
+- [ ] Add form validation and error handling
+- [ ] Implement location preference selection
+- [ ] Create booking summary preview
+- [ ] **Validation:** Form captures all required data
 
-**Deliverables:**
-- Complete booking system
-- Owner booking management
-- Email notification system
+### Milestone 4.3: Booking Submission Flow (2-3 hours)
+- [ ] Handle booking request submission
+- [ ] Show confirmation message to visitor
+- [ ] Send notification email to profile owner
+- [ ] Store request with "pending" status
+- [ ] **Validation:** Complete booking flow works end-to-end
+
+### Milestone 4.4: Owner Booking Management (3-4 hours)
+- [ ] Create booking dashboard for owners
+- [ ] Show pending/confirmed/rejected bookings
+- [ ] Add approve/reject buttons
+- [ ] Implement booking status updates
+- [ ] **Validation:** Owners can manage all booking requests
+
+### Milestone 4.5: Google Calendar Export (2-3 hours)
+- [ ] Add "Add to Calendar" functionality
+- [ ] Generate calendar event with booking details
+- [ ] Handle Google Calendar API event creation
+- [ ] Send calendar invites to both parties
+- [ ] **Validation:** Confirmed bookings export to Google Calendar
+
+**Phase 4 Deliverables:**
+- ✅ Complete booking system with calendar picker
+- ✅ Owner dashboard for booking management
+- ✅ Email notifications for requests
+- ✅ Google Calendar integration for confirmed bookings
 
 ---
 
 ## Phase 5: Team Hierarchy & Management 👥
 **Timeline: Days 9-10**
 
-### Team Structure
-- Implement team creation and management
-- Build hierarchical team display
-- Create team member cards
-- Add team browsing interface
+### Milestone 5.1: Team Structure Implementation (3-4 hours)
+- [ ] Create team creation and management interface
+- [ ] Build hierarchical team display
+- [ ] Implement team member addition/removal
+- [ ] Add team role assignments
+- [ ] **Validation:** Complex team hierarchies work correctly
 
-### Profile Management
-- Allow team members to edit own profiles
-- Create profile edit forms
-- Implement avatar upload
-- Add profile update notifications
+### Milestone 5.2: Team Member Cards (2-3 hours)
+- [ ] Design team member profile cards
+- [ ] Show basic info (name, position, feedback count) 
+- [ ] Add "View Profile" and "Send Feedback" actions
+- [ ] Implement responsive team grid layout
+- [ ] **Validation:** Team browsing is intuitive and attractive
 
-**Deliverables:**
-- Team management system
-- Profile editing interface
-- Team member browsing
+### Milestone 5.3: Profile Self-Management (3-4 hours)
+- [ ] Create profile edit forms for team members
+- [ ] Allow bio, contact info, and photo updates
+- [ ] Implement avatar upload functionality
+- [ ] Add form validation and error handling
+- [ ] **Validation:** Team members can update own profiles
+
+### Milestone 5.4: Team Browse & Search (2-3 hours)
+- [ ] Add team search and filtering
+- [ ] Create team hierarchy navigation
+- [ ] Implement team member sorting options
+- [ ] Add team member count badges
+- [ ] **Validation:** Easy to find specific team members
+
+### Milestone 5.5: Team Permissions & Security (1-2 hours)
+- [ ] Implement team-based RLS policies
+- [ ] Ensure users only edit own profiles
+- [ ] Add team leader management permissions
+- [ ] Test security boundaries
+- [ ] **Validation:** Team permissions secure and functional
+
+**Phase 5 Deliverables:**
+- ✅ Hierarchical team management system
+- ✅ Team member self-service profile editing
+- ✅ Beautiful team browsing interface
+- ✅ Secure team-based permissions
 
 ---
 
 ## Phase 6: Anonymous Feedback System 💬
 **Timeline: Days 11-12**
 
-### Feedback Collection
-- Create anonymous feedback form
-- Implement 200-word limit validation
-- Design feedback submission flow
-- Ensure complete anonymity
+### Milestone 6.1: Feedback Form Design (2-3 hours)
+- [ ] Create anonymous feedback modal/form
+- [ ] Implement 200-word limit with counter
+- [ ] Add character validation and warnings
+- [ ] Design submission confirmation flow
+- [ ] **Validation:** Form enforces word limits correctly
 
-### Feedback Display
-- Add feedback count badges to profiles
-- Create feedback management for recipients
-- Implement feedback viewing interface
-- Add feedback analytics
+### Milestone 6.2: Anonymous Submission System (3-4 hours)
+- [ ] Implement truly anonymous feedback storage
+- [ ] Remove all tracking/identification data
+- [ ] Add rate limiting to prevent spam
+- [ ] Create feedback submission endpoint
+- [ ] **Validation:** Feedback is completely untraceable
 
-**Deliverables:**
-- Anonymous feedback system
-- Feedback count badges
-- Feedback management interface
+### Milestone 6.3: Feedback Count Badges (2-3 hours)
+- [ ] Add feedback count to all team member profiles
+- [ ] Update counts in real-time
+- [ ] Design attractive badge styling
+- [ ] Handle zero-feedback states gracefully
+- [ ] **Validation:** Feedback counts display correctly
+
+### Milestone 6.4: Feedback Management Interface (2-3 hours)
+- [ ] Create feedback viewing interface for recipients
+- [ ] Show feedback chronologically (no sender info)
+- [ ] Add feedback filtering/sorting options
+- [ ] Implement feedback archiving
+- [ ] **Validation:** Recipients can manage their feedback
+
+### Milestone 6.5: Feedback Analytics & Insights (1-2 hours)
+- [ ] Add basic feedback statistics
+- [ ] Show feedback trends over time
+- [ ] Create feedback summary reports
+- [ ] Add export functionality for personal use
+- [ ] **Validation:** Useful insights without compromising anonymity
+
+**Phase 6 Deliverables:**
+- ✅ Completely anonymous feedback system
+- ✅ Real-time feedback count badges
+- ✅ Feedback management interface
+- ✅ Basic analytics and insights
 
 ---
 
 ## Phase 7: Polish & Optimization ✨
 **Timeline: Days 13-14**
 
-### Performance Optimization
-- Optimize page load times
-- Implement image optimization
-- Add loading states and skeletons
-- Test mobile performance
+### Milestone 7.1: Performance Optimization (3-4 hours)
+- [ ] Optimize image loading and compression
+- [ ] Implement lazy loading for team members
+- [ ] Add service worker for caching
+- [ ] Optimize bundle size and loading times
+- [ ] **Validation:** Sub-2 second page loads achieved
 
-### Final Features
-- Add download app CTA
-- Implement QR code generation
-- Create sharing functionality
-- Add final design polish
+### Milestone 7.2: Loading States & Micro-interactions (2-3 hours)
+- [ ] Add skeleton loading states throughout
+- [ ] Implement smooth page transitions
+- [ ] Add button loading states and confirmations
+- [ ] Polish micro-animations and hover effects
+- [ ] **Validation:** Smooth, professional feel throughout
 
-**Deliverables:**
-- Production-ready application
-- QR code generation
-- Optimized performance
+### Milestone 7.3: QR Code Generation (2-3 hours)
+- [ ] Implement QR code generation for profiles
+- [ ] Add QR code download functionality
+- [ ] Create QR code customization options
+- [ ] Test QR codes across different devices
+- [ ] **Validation:** QR codes work reliably
+
+### Milestone 7.4: Final Features & CTA (2-3 hours)
+- [ ] Add download app CTA with tracking
+- [ ] Create sharing functionality for profiles
+- [ ] Add social media preview optimization
+- [ ] Implement contact export features
+- [ ] **Validation:** All final features work correctly
+
+### Milestone 7.5: Testing & Bug Fixes (2-3 hours)
+- [ ] Comprehensive mobile device testing
+- [ ] Cross-browser compatibility testing
+- [ ] Performance testing on slow networks
+- [ ] Fix any remaining bugs or issues
+- [ ] **Validation:** Production-ready quality achieved
+
+**Phase 7 Deliverables:**
+- ✅ Fully optimized performance
+- ✅ QR code generation system
+- ✅ Complete feature set
+- ✅ Production-ready application
 
 ---
 
