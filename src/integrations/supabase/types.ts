@@ -50,6 +50,138 @@ export type Database = {
         }
         Relationships: []
       }
+      anonymous_feedback: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          target_user_id: string
+          word_count: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          target_user_id: string
+          word_count: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          target_user_id?: string
+          word_count?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "anonymous_feedback_target_user_id_fkey"
+            columns: ["target_user_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      booking_requests: {
+        Row: {
+          created_at: string
+          duration_minutes: number
+          id: string
+          location_preference: string | null
+          note: string | null
+          requested_time: string
+          requester_email: string
+          requester_name: string
+          status: Database["public"]["Enums"]["booking_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          location_preference?: string | null
+          note?: string | null
+          requested_time: string
+          requester_email: string
+          requester_name: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          duration_minutes?: number
+          id?: string
+          location_preference?: string | null
+          note?: string | null
+          requested_time?: string
+          requester_email?: string
+          requester_name?: string
+          status?: Database["public"]["Enums"]["booking_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_requests_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      calendar_events: {
+        Row: {
+          created_at: string
+          end_time: string
+          google_event_id: string | null
+          id: string
+          is_confirmed_attendance: boolean
+          is_public: boolean
+          location: string | null
+          start_time: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          end_time: string
+          google_event_id?: string | null
+          id?: string
+          is_confirmed_attendance?: boolean
+          is_public?: boolean
+          location?: string | null
+          start_time: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          end_time?: string
+          google_event_id?: string | null
+          id?: string
+          is_confirmed_attendance?: boolean
+          is_public?: boolean
+          location?: string | null
+          start_time?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calendar_events_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "user_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       companies: {
         Row: {
           created_at: string
@@ -246,10 +378,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      count_words: {
+        Args: { input_text: string }
+        Returns: number
+      }
     }
     Enums: {
-      [_ in never]: never
+      booking_status: "pending" | "confirmed" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -376,6 +511,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      booking_status: ["pending", "confirmed", "rejected"],
+    },
   },
 } as const
