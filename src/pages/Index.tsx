@@ -95,7 +95,9 @@ const Index = () => {
               <p className="text-muted-foreground mb-4">
                 Manage your professional profile and QR code
               </p>
-              <Button className="w-full">View Profile</Button>
+              <Button className="w-full" asChild>
+                <Link to="/profile">View Profile</Link>
+              </Button>
             </CardContent>
           </Card>
           
