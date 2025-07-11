@@ -1,6 +1,8 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
+import { Navbar } from "@/components/ui/navbar";
 import { Link } from "react-router-dom";
 import { QrCode, Users, Calendar, MessageSquare, LogOut } from "lucide-react";
 
@@ -20,68 +22,91 @@ const Index = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted/20 p-4">
-        <Card className="w-full max-w-2xl">
-          <CardHeader className="text-center">
-            <CardTitle className="text-4xl font-bold mb-4">Smart Business Cards</CardTitle>
-            <CardDescription className="text-xl">
-              Transform your networking with intelligent digital business cards
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex items-center space-x-4">
-                <QrCode className="h-8 w-8 text-primary" />
-                <div>
-                  <h3 className="font-semibold">QR Code Integration</h3>
-                  <p className="text-sm text-muted-foreground">Instant profile access via QR scan</p>
+      <div className="min-h-screen bg-gradient-radial from-background to-background-secondary">
+        <Navbar />
+        <Container className="py-8">
+          <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
+            <Card className="w-full max-w-2xl premium">
+              <CardHeader className="text-center">
+                <CardTitle className="text-4xl font-bold mb-4">Smart Business Cards</CardTitle>
+                <CardDescription className="text-xl">
+                  Transform your networking with intelligent digital business cards
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="flex items-center space-x-4">
+                    <QrCode className="h-8 w-8 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">QR Code Integration</h3>
+                      <p className="text-sm text-muted-foreground">Instant profile access via QR scan</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <Calendar className="h-8 w-8 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">Calendar Integration</h3>
+                      <p className="text-sm text-muted-foreground">Show your real-time availability</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <Users className="h-8 w-8 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">Team Management</h3>
+                      <p className="text-sm text-muted-foreground">Manage your entire team hierarchy</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <MessageSquare className="h-8 w-8 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">Anonymous Feedback</h3>
+                      <p className="text-sm text-muted-foreground">Receive honest team insights</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Calendar className="h-8 w-8 text-primary" />
-                <div>
-                  <h3 className="font-semibold">Calendar Integration</h3>
-                  <p className="text-sm text-muted-foreground">Show your real-time availability</p>
+                <div className="text-center">
+                  <Button variant="premium" size="lg" asChild className="w-full md:w-auto">
+                    <Link to="/auth">Get Started</Link>
+                  </Button>
                 </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Users className="h-8 w-8 text-primary" />
-                <div>
-                  <h3 className="font-semibold">Team Management</h3>
-                  <p className="text-sm text-muted-foreground">Manage your entire team hierarchy</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <MessageSquare className="h-8 w-8 text-primary" />
-                <div>
-                  <h3 className="font-semibold">Anonymous Feedback</h3>
-                  <p className="text-sm text-muted-foreground">Receive honest team insights</p>
-                </div>
-              </div>
-            </div>
-            <div className="text-center">
-              <Link to="/auth">
-                <Button size="lg" className="w-full md:w-auto">
-                  Get Started
-                </Button>
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+              </CardContent>
+            </Card>
+          </div>
+        </Container>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Dashboard</h1>
-          <Button onClick={signOut} variant="outline">
-            <LogOut className="h-4 w-4 mr-2" />
-            Sign Out
-          </Button>
+    <div className="min-h-screen bg-gradient-radial from-background to-background-secondary">
+      <Navbar />
+      <Container className="py-8">
+        <div className="text-center space-y-2 mb-8">
+          <h1 className="text-3xl font-bold">Welcome back!</h1>
+          <p className="text-muted-foreground">Manage your digital business card</p>
         </div>
+
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle>Your Profile</CardTitle>
+            <CardDescription>
+              Manage your professional information
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">{user.email}</p>
+              <p className="text-sm text-muted-foreground">
+                Active since {new Date(user.created_at).toLocaleDateString()}
+              </p>
+            </div>
+            <div className="flex space-x-2">
+              <Button asChild>
+                <Link to="/profile">View Profile</Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -131,7 +156,7 @@ const Index = () => {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

@@ -8,6 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
 import { Eye, EyeOff, Mail, Lock, User } from "lucide-react";
+import { Navbar } from "@/components/ui/navbar";
+import { Container } from "@/components/ui/container";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -102,14 +104,17 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted/20 p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl text-center">Smart Business Cards</CardTitle>
-          <CardDescription className="text-center">
-            Create your professional digital presence
-          </CardDescription>
-        </CardHeader>
+    <div className="min-h-screen bg-gradient-radial from-background to-background-secondary">
+      <Navbar />
+      <Container className="py-8">
+        <div className="flex items-center justify-center min-h-[calc(100vh-200px)]">
+          <Card className="w-full max-w-md premium">
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-2xl text-center">Smart Business Cards</CardTitle>
+              <CardDescription className="text-center">
+                Create your professional digital presence
+              </CardDescription>
+            </CardHeader>
         <CardContent>
           <Tabs defaultValue="signin" className="w-full">
             <TabsList className="grid w-full grid-cols-2">
@@ -162,7 +167,7 @@ const Auth = () => {
                     </Button>
                   </div>
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button type="submit" variant="premium" size="lg" className="w-full" disabled={loading}>
                   {loading ? "Signing in..." : "Sign In"}
                 </Button>
               </form>
@@ -229,14 +234,16 @@ const Auth = () => {
                     </Button>
                   </div>
                 </div>
-                <Button type="submit" className="w-full" disabled={loading}>
+                <Button type="submit" variant="premium" size="lg" className="w-full" disabled={loading}>
                   {loading ? "Creating account..." : "Create Account"}
                 </Button>
               </form>
             </TabsContent>
           </Tabs>
-        </CardContent>
-      </Card>
+            </CardContent>
+          </Card>
+        </div>
+      </Container>
     </div>
   );
 };

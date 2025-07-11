@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Container, Section } from "@/components/ui/container";
+import { Navbar } from "@/components/ui/navbar";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Calendar, Users, MessageSquare, Building } from "lucide-react";
 
@@ -144,172 +145,155 @@ const ProfilePage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-muted/10 to-accent/5">
-      {/* Hero Section */}
-      <Section padding="lg" background="none">
-        <Container>
-          <Card className="animate-fade-in" variant="hero" hover="glow">
-            <CardHeader className="text-center">
-              <div className="flex flex-col items-center space-y-4">
-                <Avatar size="2xl" variant="glow">
-                  <AvatarImage src={profile.avatar_url} alt={profile.name} />
-                  <AvatarFallback className="text-2xl">
-                    {profile.name?.split(" ").map(n => n[0]).join("")}
-                  </AvatarFallback>
-                </Avatar>
-                
-                <div className="space-y-2">
-                  <h1 className="text-4xl font-playfair font-bold text-white">
-                    {profile.name}
-                  </h1>
-                  <p className="text-xl text-white/80">{profile.position}</p>
-                  <p className="text-lg text-white/70">{profile.companies?.name}</p>
-                </div>
-
-                {feedbackCount > 0 && (
-                  <Badge variant="glow" size="lg">
-                    <MessageSquare className="h-4 w-4 mr-1" />
-                    {feedbackCount} Reviews
-                  </Badge>
-                )}
+    <div className="min-h-screen bg-gradient-radial from-background to-background-secondary">
+      <Navbar />
+      <Container className="py-8">
+        {/* Hero Section */}
+        <Card className="animate-fade-in premium mb-6">
+          <CardContent className="p-8 text-center">
+            <div className="flex flex-col items-center space-y-4">
+              <Avatar className="w-24 h-24">
+                <AvatarImage src={profile.avatar_url} alt={profile.name} />
+                <AvatarFallback className="text-2xl">
+                  {profile.name?.split(" ").map(n => n[0]).join("")}
+                </AvatarFallback>
+              </Avatar>
+              
+              <div className="space-y-2">
+                <h1 className="text-4xl font-bold">
+                  {profile.name}
+                </h1>
+                <p className="text-xl text-muted-foreground">{profile.position}</p>
+                <p className="text-lg text-muted-foreground">{profile.companies?.name}</p>
               </div>
-            </CardHeader>
-          </Card>
-        </Container>
-      </Section>
 
-      {/* Contact Information */}
-      <Section padding="default">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-slide-up">
-            <Card variant="premium" hover="lift">
+              {feedbackCount > 0 && (
+                <Badge variant="secondary" className="text-sm">
+                  <MessageSquare className="h-4 w-4 mr-1" />
+                  {feedbackCount} Reviews
+                </Badge>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Contact Information */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+          <Card className="premium">
+            <CardContent className="p-6">
+              <div className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 text-primary" />
+                <div>
+                  <p className="text-sm text-muted-foreground">Email</p>
+                  <p className="font-medium">{profile.email}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {profile.phone && (
+            <Card className="premium">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-primary" />
+                  <Phone className="h-5 w-5 text-primary" />
                   <div>
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="font-medium">{profile.email}</p>
+                    <p className="text-sm text-muted-foreground">Phone</p>
+                    <p className="font-medium">{profile.phone}</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
+          )}
 
-            {profile.phone && (
-              <Card variant="premium" hover="lift">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <Phone className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">Phone</p>
-                      <p className="font-medium">{profile.phone}</p>
-                    </div>
+          {profile.companies?.location && (
+            <Card className="premium">
+              <CardContent className="p-6">
+                <div className="flex items-center space-x-3">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm text-muted-foreground">Location</p>
+                    <p className="font-medium">{profile.companies.location}</p>
                   </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {profile.companies?.location && (
-              <Card variant="premium" hover="lift">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <MapPin className="h-5 w-5 text-primary" />
-                    <div>
-                      <p className="text-sm text-muted-foreground">Location</p>
-                      <p className="font-medium">{profile.companies.location}</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-        </Container>
-      </Section>
-
-      {/* Today's Schedule */}
-      {todaysEvents && todaysEvents.length > 0 && (
-        <Section padding="default">
-          <Container>
-            <Card variant="accent" hover="glow">
-              <CardHeader>
-                <div className="flex items-center space-x-2">
-                  <Calendar className="h-6 w-6" />
-                  <h2 className="text-2xl font-playfair font-semibold">Where I'll Be Today</h2>
-                </div>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {todaysEvents.map((event: any) => (
-                    <div key={event.id} className="flex items-center justify-between p-4 bg-white/50 rounded-lg">
-                      <div>
-                        <h3 className="font-semibold">{event.title}</h3>
-                        <p className="text-sm text-muted-foreground">{event.location}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="font-medium">
-                          {new Date(event.start_time).toLocaleTimeString([], { 
-                            hour: '2-digit', 
-                            minute: '2-digit' 
-                          })}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
                 </div>
               </CardContent>
             </Card>
-          </Container>
-        </Section>
-      )}
+          )}
+        </div>
 
-      {/* Call-to-Action Section */}
-      <Section padding="lg">
-        <Container>
-          <Card variant="glass" hover="lift">
-            <CardContent className="p-8 text-center">
-              <h2 className="text-3xl font-playfair font-bold mb-4">
-                Let's Connect
-              </h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Ready to schedule a meeting or just want to say hello?
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="btn-premium">
-                  <Calendar className="h-5 w-5 mr-2" />
-                  Book a Meeting
-                </Button>
-                <Button size="lg" variant="outline">
-                  <Users className="h-5 w-5 mr-2" />
-                  View Team
+        {/* Today's Schedule */}
+        {todaysEvents && todaysEvents.length > 0 && (
+          <Card className="mb-6">
+            <CardHeader>
+              <div className="flex items-center space-x-2">
+                <Calendar className="h-6 w-6" />
+                <h2 className="text-2xl font-semibold">Where I'll Be Today</h2>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {todaysEvents.map((event: any) => (
+                  <div key={event.id} className="flex items-center justify-between p-4 bg-muted/50 rounded-lg">
+                    <div>
+                      <h3 className="font-semibold">{event.title}</h3>
+                      <p className="text-sm text-muted-foreground">{event.location}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-medium">
+                        {new Date(event.start_time).toLocaleTimeString([], { 
+                          hour: '2-digit', 
+                          minute: '2-digit' 
+                        })}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Call-to-Action Section */}
+        <Card className="mb-6">
+          <CardContent className="p-8 text-center">
+            <h2 className="text-3xl font-bold mb-4">
+              Let's Connect
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6">
+              Ready to schedule a meeting or just want to say hello?
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="premium">
+                <Calendar className="h-5 w-5 mr-2" />
+                Book a Meeting
+              </Button>
+              <Button size="lg" variant="outline">
+                <Users className="h-5 w-5 mr-2" />
+                View Team
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Company Footer */}
+        {profile.companies && (
+          <Card>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-center space-x-4">
+                <Building className="h-8 w-8 text-primary" />
+                <div className="text-center">
+                  <h3 className="text-xl font-semibold">{profile.companies.name}</h3>
+                  <p className="text-muted-foreground">{profile.companies.location}</p>
+                </div>
+              </div>
+              <div className="mt-6 text-center">
+                <Button variant="outline">
+                  Download Our App
                 </Button>
               </div>
             </CardContent>
           </Card>
-        </Container>
-      </Section>
-
-      {/* Company Footer */}
-      {profile.companies && (
-        <Section padding="default" background="muted">
-          <Container>
-            <Card variant="default">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-center space-x-4">
-                  <Building className="h-8 w-8 text-primary" />
-                  <div className="text-center">
-                    <h3 className="text-xl font-playfair font-semibold">{profile.companies.name}</h3>
-                    <p className="text-muted-foreground">{profile.companies.location}</p>
-                  </div>
-                </div>
-                <div className="mt-6 text-center">
-                  <Button variant="outline">
-                    Download Our App
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </Container>
-        </Section>
-      )}
+        )}
+      </Container>
     </div>
   );
 };
