@@ -9,6 +9,7 @@ import { Navbar } from "@/components/ui/navbar";
 import { Button } from "@/components/ui/button";
 import { CalendarIntegration } from "@/components/CalendarIntegration";
 import { BookingCTA } from "@/components/BookingCTA";
+import { FeedbackCTA } from "@/components/FeedbackCTA";
 import { Mail, Phone, MapPin, Calendar, Users, MessageSquare, Building } from "lucide-react";
 
 // Types for profile data
@@ -180,7 +181,7 @@ const ProfilePage = () => {
         </Card>
 
         {/* Contact Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           <Card className="premium">
             <CardContent className="p-6">
               <div className="flex items-center space-x-3">
@@ -220,6 +221,11 @@ const ProfilePage = () => {
               </CardContent>
             </Card>
           )}
+          <FeedbackCTA 
+            profileId={profile.id} 
+            profileName={profile.name}
+            feedbackCount={feedbackCount}
+          />
         </div>
 
         {/* Today's Schedule */}
