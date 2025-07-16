@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Container, Section } from "@/components/ui/container";
 import { Navbar } from "@/components/ui/navbar";
 import { Button } from "@/components/ui/button";
+import { CalendarIntegration } from "@/components/CalendarIntegration";
 import { Mail, Phone, MapPin, Calendar, Users, MessageSquare, Building } from "lucide-react";
 
 // Types for profile data
@@ -251,6 +252,11 @@ const ProfilePage = () => {
             </CardContent>
           </Card>
         )}
+
+        {/* Calendar Integration */}
+        <div className="mb-6">
+          <CalendarIntegration userId={profile.id} />
+        </div>
 
         {/* Call-to-Action Section */}
         <Card className="mb-6">
