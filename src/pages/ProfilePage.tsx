@@ -8,6 +8,7 @@ import { Container, Section } from "@/components/ui/container";
 import { Navbar } from "@/components/ui/navbar";
 import { Button } from "@/components/ui/button";
 import { CalendarIntegration } from "@/components/CalendarIntegration";
+import { BookingCTA } from "@/components/BookingCTA";
 import { Mail, Phone, MapPin, Calendar, Users, MessageSquare, Building } from "lucide-react";
 
 // Types for profile data
@@ -258,27 +259,10 @@ const ProfilePage = () => {
           <CalendarIntegration userId={profile.id} />
         </div>
 
-        {/* Call-to-Action Section */}
-        <Card className="mb-6">
-          <CardContent className="p-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">
-              Let's Connect
-            </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              Ready to schedule a meeting or just want to say hello?
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="premium">
-                <Calendar className="h-5 w-5 mr-2" />
-                Book a Meeting
-              </Button>
-              <Button size="lg" variant="outline">
-                <Users className="h-5 w-5 mr-2" />
-                View Team
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+        {/* Booking CTA */}
+        <div className="mb-6">
+          <BookingCTA profileId={profile.id} profileName={profile.name} />
+        </div>
 
         {/* Company Footer */}
         {profile.companies && (
